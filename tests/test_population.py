@@ -15,11 +15,11 @@ def test_population_live(driver):
     page = PopulationPage(driver)
     page.load()
 
-    # Prepare CSV log file inside logs/ folder
+
     log_file = "logs/population_log.csv"
     with open(log_file, mode="w", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
-        writer.writerow(["Timestamp", "Population Count"])  # header row
+        writer.writerow(["Timestamp", "Population Count"])
 
         try:
             while True:
@@ -27,10 +27,10 @@ def test_population_live(driver):
                 timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
                 print(f"{timestamp} - Current World Population: {population}")
 
-                # Write to CSV
-                writer.writerow([timestamp, population])
-                file.flush()  # ensure data is written immediately
 
-                time.sleep(1)  # refresh every second
+                writer.writerow([timestamp, population])
+                file.flush()
+
+                time.sleep(1)
         except KeyboardInterrupt:
             print("\nStopped by user (Ctrl+C).")
